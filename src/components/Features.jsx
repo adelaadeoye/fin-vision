@@ -50,7 +50,6 @@ function Features() {
               )}
               <video 
                 ref={videoRef}
-                loop 
                 playsInline
                 preload="metadata"
                 className="feature-video-player"
