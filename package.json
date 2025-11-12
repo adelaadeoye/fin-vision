@@ -1,0 +1,25 @@
+{
+  "name": "thank-you-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "homepage": "https://YOUR_GITHUB_USERNAME.github.io/thank-you-app",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-calendly": "^4.4.0",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^7.2.2"
+  }
+}
