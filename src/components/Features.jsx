@@ -9,12 +9,28 @@ function Features() {
   const handlePlayVideo = async () => {
     if (videoRef.current) {
       try {
+        // Unmute and show controls
         videoRef.current.muted = false
+        videoRef.current.controls = true
+        
+        // Play the video
         await videoRef.current.play()
         setIsPlaying(true)
         setShowPlayButton(false)
       } catch (err) {
-        console.log('Play failed:', err)
+        console.error('Play failed:', err)
+        // Fallback: try with muted if unmuted fails
+        try {
+          videoRef.current.muted = true
+          videoRef.current.controls = true
+          await videoRef.current.play()
+          setIsPlaying(true)
+          setShowPlayButton(false)
+          alert('Video started muted. Click the volume icon to unmute.')
+        } catch (mutedErr) {
+          console.error('Muted play also failed:', mutedErr)
+          alert('Unable to play video. Please try refreshing the page.')
+        }
       }
     }
   }
@@ -36,10 +52,10 @@ function Features() {
                 ref={videoRef}
                 loop 
                 playsInline
-                controls
+                preload="metadata"
                 className="feature-video-player"
               >
-                <source src="/PitchVideo.mp4" type="video/mp4" />
+                <source src="PitchVideo.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
